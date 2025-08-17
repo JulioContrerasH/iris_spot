@@ -1,0 +1,57 @@
+{
+  "name": "spot",
+  "host": "127.0.0.1",
+  "port": 5000,
+
+  "images": {
+    "path": "images/{id}/rgb.npy",
+    "shape": [4363, 3395],
+    "thumbnails": false,
+    "metadata": "images/{id}/metadata.json"
+  },
+
+  "classes": [
+    {
+      "name": "Clear",
+      "colour": [255, 255, 255, 0],
+      "user_colour": [0, 255, 255, 120]
+    },
+    {
+      "name": "Cloud",
+      "colour": [255, 255, 0, 140]
+    }
+  ],
+
+  "views": {
+    "RGB": { 
+      "description": "B4-B3-B1", 
+      "type": "image", 
+      "data": ["$B4","$B3","$B1"], 
+      "clip": 2 
+    },
+    "Blank": {
+      "description": "Fondo negro",
+      "type": "image",
+      "data": "$B1*0",   
+      "cmap": "gray"
+    },
+    "Bing": {             
+      "description": "Bing Aerial",
+      "type": "bingmap"
+    }
+
+  },
+
+  "view_groups": { 
+    "default": ["RGB", "Blank", "Bing"]
+  },
+
+  "segmentation": {
+    "path": "",
+    "mask_encoding": "rgb",
+    "mask_area": [0, 0, 4363, 3395],
+    "score": "f1",
+    "prioritise_unmarked_images": true,
+    "ai_model": false
+  }
+}
